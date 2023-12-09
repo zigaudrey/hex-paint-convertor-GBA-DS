@@ -7,9 +7,10 @@ Python Scripts that convert Picture into Bin file and vice-versa for GameBoy Adv
 * For the sprite, **use [CHR-YY](https://www.romhacking.net/utilities/119/) to locate** and create bin file with an Hex Editor. **Don't forget to mention the offset when you will replace in the ROM.**
 * For the palette, **use [mGBA](https://mgba.io/) and open Tool > Game State View > Palette**. **The bytes pair are swapped** (eg: 01 EA to EA 01), **write them in order then use it to find the whole palette in the ROM.**
 ### DS (16-colors)
-* **Use [Tinke](https://www.romhacking.net/utilities/817/) to extract NCGR and NCLR files.** If the NCGR's header shows 03 00 00 00 like below:
+* **Use [Tinke](https://www.romhacking.net/utilities/817/) to extract NCGR and NCLR files.**
+* If the NCGR's header shows 03 00 00 00 like below, **remove the header(48 decimal long) and the SOPC footer**
 ![NCGR Header Depth Showing](https://github.com/zigaudrey/hex-paint-convertor-GBA-DS/assets/129554573/b12182d3-27ad-4fb5-8208-9957dcc6e3f8)
-* **Remove the header(48 decimal long) and the SOPC footer**. Create another bin with **the Palette data needed to edit.**
+* Create another bin with **the Palette data from NCLR needed to edit.**
 ### DS Icon
 * Use [Tinke](https://www.romhacking.net/utilities/817/) to extract the banner.bin. **The icon is at 20-21F(hex) and the palette is at 220-23F(hex).**
 
