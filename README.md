@@ -1,6 +1,6 @@
 ![Paint Hex Convertor GBA DS 16-Colors Icon BANNER](https://github.com/zigaudrey/hex-paint-convertor-GBA-DS/assets/129554573/5503bde3-7e5e-42f1-b81e-ede94acd75c0)
 # Paint-Hex Convertor (Gameboy Advance/DS 16-colors)
-Python Scripts that convert Picture into Bin file and vice-versa for GameBoy Advance, DS 16-Colors and Icon.
+Python Scripts that convert Picture into Bin file and vice-versa for GameBoy Advance, DS 16-Colors Sprites and Icon Editing.
 
 ## Ressource
 ### Gameboy Advance
