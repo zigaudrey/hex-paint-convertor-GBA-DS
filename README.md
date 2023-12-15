@@ -28,7 +28,7 @@ Python Scripts that convert Picture into Bin file and vice-versa for GameBoy Adv
 3. **Two images files will be created**, ready to be edited in drawing tools
 
 ## Update
-* **15 December of 2023**: Added compability to Nitro DS files.
+* **15 December of 2023**: Added compatibility to Nitro DS files.
 
 ## Similar Tool
 [Paint-Hex Convertor (Sega Genesis/Megadrive)](https://github.com/zigaudrey/paint-hex-convertor-MSX)
