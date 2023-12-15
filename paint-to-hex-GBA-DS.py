@@ -56,15 +56,40 @@ if len(pal_file)!=0:
                                     bin_color = struct.pack("B", b2 * 16 + b1)
                                     bit_paint += bin_color
 
-                    out_file = open(new_bin_file + " GBA Pal.bin", "wb+")
-                    out_file.write(BGR_pal)
-                    out_file.close()
-                                    
-                    out_file = open(new_bin_file + " GBA Image.bin", "wb+")
-                    out_file.write(bit_paint)
-                    out_file.close()
+                    confirm = ""
 
-                    print("Pic and Pal Bin file done!")
+                    while confirm == "":
+                        confirm = str(input("Create Nitro Files? (y/n)")).lower()
+                        if confirm != "y" and confirm != "n":
+                            confirm = ""
+
+                    if confirm == "y":
+                        NCGR_size = struct.pack("<L", 64 + len(bit_paint))[:2]
+                        NCGR_subsection = b'SOPC\x10\x00\x00\x00\x00\x00\x00\x00\x20\x00' + struct.pack("<L", (h // 8) * w )[:2]
+                        NCGR_header = b'RGCN\xFF\xFE\x00\x01' + NCGR_size + b'\x00\x00\x10\x00\x01\x00RAHC\x20\x18\x00\x00' + struct.pack("<L", h // 8 )[:2] + struct.pack("<L", w // 8 )[:2] + b'\x03\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' + struct.pack("<L", w * h ) + b'\x18\x00\x00\x00'
+
+                        out_file = open(new_bin_file + " Sprite.NCGR", "wb+")
+                        out_file.write(NCGR_header + bit_paint + NCGR_subsection)
+                        out_file.close()
+
+                        NCLR_header = b'RLCN\xFF\xFE\x00\x01' + struct.pack("<L", len(BGR_pal) + 40) + b'\x10\x00\x01\x00TTLP' + struct.pack("<L", len(BGR_pal) + 24) + b'\x03\x00\x00\x00\x00\x00\x00\x00' + struct.pack("<L", len(BGR_pal)) + b'\x10\x00\x00\x00'
+
+                        out_file = open(new_bin_file + " Pal.NCLR", "wb+")
+                        out_file.write(NCLR_header + BGR_pal)
+                        out_file.close()
+
+                        print("Pic and Pal Nitro files done!")
+
+                    else:
+                        out_file = open(new_bin_file + " GBA Pal.bin", "wb+")
+                        out_file.write(BGR_pal)
+                        out_file.close()
+                                        
+                        out_file = open(new_bin_file + " GBA Image.bin", "wb+")
+                        out_file.write(bit_paint)
+                        out_file.close()
+
+                        print("Pic and Pal Bin file done!")
 
                 else:
 
