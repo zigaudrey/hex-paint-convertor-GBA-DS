@@ -9,6 +9,7 @@ Python Scripts that convert Picture into Bin file and vice-versa for GameBoy Adv
 ### DS (16-colors)
 * **Use [Tinke](https://www.romhacking.net/utilities/817/) to extract NCGR and NCLR files.** The NCGR's header shows 03 00 00 00 like below.
 ![NCGR Header Depth Showing](https://github.com/zigaudrey/hex-paint-convertor-GBA-DS/assets/129554573/b12182d3-27ad-4fb5-8208-9957dcc6e3f8)
++ If there is a compressed data (LZ10/lZ11), **decompress it and extract the new one**. Be sure **to check the hex file if there is the NCGR or NCLR tag**
 ### DS Icon
 * Use [Tinke](https://www.romhacking.net/utilities/817/) to extract the banner.bin. **The icon is at 20-21F(hex) and the palette is at 220-23F(hex).**
 
