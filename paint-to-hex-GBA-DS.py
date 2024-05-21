@@ -37,7 +37,10 @@ if len(pal_file)!=0:
 
                 if w % 8 == 0 and h % 8 == 0:
 
-                    n=len(targ_file)-5
+                    n=len(targ_file)-1
+                    while n!= 0 and targ_file[n] != '.':
+                        n -= 1
+                    n -= 1
                     while n!= 0 and targ_file[n] != '/':
                         new_bin_file = targ_file[n] + new_bin_file
                         n -= 1
