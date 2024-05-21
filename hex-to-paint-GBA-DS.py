@@ -12,8 +12,11 @@ if len(PAL_path) != 0:
     PAL_data = PAL_open.read()
     PAL_open.close()
 
-    n=len(PAL_path) - 6
+    n=len(PAL_path) - 1
     SHORT_pal_name = ""
+    while n!= 0 and PAL_path[n] != '.':
+        n -= 1
+    n -= 1
     while n!= 0 and PAL_path[n] != '/':
         SHORT_pal_name = PAL_path[n] + SHORT_pal_name
         n -= 1
@@ -88,8 +91,11 @@ if len(PAL_path) != 0:
 
                     if (len(BIN_file) - spr_POINTER - spr_END) % 32 == 0:
 
-                        n=len(BIN_name)-5
+                        n=len(BIN_name)-1
                         SHORT_name = ""
+                        while n!= 0 and BIN_name[n] != '.':
+                            n -= 1
+                        n -= 1
                         while n!= 0 and BIN_name[n] != '/':
                             SHORT_name = BIN_name[n] + SHORT_name
                             n -= 1
