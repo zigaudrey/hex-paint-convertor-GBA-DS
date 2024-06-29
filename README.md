@@ -33,4 +33,5 @@ Python Scripts that convert Picture into Bin file and vice-versa for GameBoy Adv
 
 ## Similar Tool
 + [Paint-Hex Convertor (Sega Genesis/Megadrive)](https://github.com/zigaudrey/paint-hex-convertor-MSX)
-+ [Paint - Hex Convertor DS-256 colors](https://github.com/zigaudrey/paint-hex-convertor-DS-256/tree/main)
++ [Paint - Hex Convertor DS-256 colors](https://github.com/zigaudrey/paint-hex-convertor-DS-256)
++ + [Paint To Hex Convertor (Sega Master System)](https://github.com/zigaudrey/paint-to-hex-convertor-SMS)
