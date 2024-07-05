@@ -6,8 +6,9 @@ Python Scripts that convert Picture into Bin file and vice-versa for GameBoy Adv
 ### Gameboy Advance
 * For the sprite, **use [CHR-YY](https://www.romhacking.net/utilities/119/) to locate** and create bin file with an Hex Editor. **Don't forget to mention the offset when you will replace in the ROM.**
 * For the palette, **use [mGBA](https://mgba.io/) and open Tool > Game State View > Palette**. **The bytes pair are swapped** (eg: 01 EA to EA 01), **write them in order then use it to find the whole palette in the ROM.**
-### DS (16-colors)
-* **Use [Tinke](https://www.romhacking.net/utilities/817/) to extract NCGR and NCLR files.** The NCGR's header shows 03 00 00 00 like below.
+### DS (16-colors), .b File
+* **Use [Tinke](https://www.romhacking.net/utilities/817/) to extract NCGR, NCLR or .b file.**
+* If this is a NCGR file, it's **header must shows 03 00 00 00 like below**.
 ![NCGR Header Depth Showing](https://github.com/zigaudrey/hex-paint-convertor-GBA-DS/assets/129554573/b12182d3-27ad-4fb5-8208-9957dcc6e3f8)
 + If there is a compressed data (LZ10/lZ11), **decompress it and extract the new one**. Be sure **to check the hex file if there is the NCGR or NCLR tag**
 ### DS Icon
@@ -30,6 +31,7 @@ Python Scripts that convert Picture into Bin file and vice-versa for GameBoy Adv
 
 ## Update
 * **15 December of 2023**: Added compatibility to Nitro DS files (Hex-to-paint) and ability to create them (Paint-to-hex).
+* **5th July of 2024**: Add compability to .b files
 
 ## Similar Tool
 + [Paint-Hex Convertor (Sega Genesis/Megadrive)](https://github.com/zigaudrey/paint-hex-convertor-MSX)
