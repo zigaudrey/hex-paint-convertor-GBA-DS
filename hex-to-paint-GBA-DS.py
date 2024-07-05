@@ -24,6 +24,7 @@ if len(PAL_path) != 0:
     if len(PAL_data) >= 32:
 
         pal_END = 0
+
         if PAL_data[0:4] == b'RLCN':
             pal_START = 40
         elif PAL_data[0:4] == b'TTPL':
@@ -69,27 +70,34 @@ if len(PAL_path) != 0:
                     PAL_List[0] = (0, 224, 224)
                 
                 BIN_name = ""
-                BIN_name = filedialog.askopenfilename(initialdir=os.getcwd(), title="Select Sprite Bin File", filetype=(('BIN file', '*.bin'),('NCGR file', '*.NCGR'),("ALL file",'*.*')))
+                BIN_name = filedialog.askopenfilename(initialdir=os.getcwd(), title="Select Sprite Bin File", filetype=(('BIN file', '*.bin'),('B file (DS Sprite Sheet)', '*.b'),('NCGR file', '*.NCGR'),("ALL file",'*.*')))
 
                 if len(BIN_name) != 0:
 
                     BIN_path = open(BIN_name, "rb")
                     BIN_file = BIN_path.read()
                     BIN_path.close()
+                    
+                    if str(BIN_name[-2:]) == ".b":
+                        spr_POINTER = struct.unpack("<L", BIN_file[24:28])[0]
+                        spr_END = len(BIN_file) - struct.unpack("<L", BIN_file[16:20])[0]
 
-                    if BIN_file[0:4] == b'RGCN':
-                        spr_POINTER = 48
-                    elif BIN_file[0:4] == b'RAHC':
-                        spr_POINTER = 32   
                     else:
-                        spr_POINTER = 0
+                        if BIN_file[0:4] == b'RGCN':
+                            spr_POINTER = 48
+                        elif BIN_file[0:4] == b'RAHC':
+                            spr_POINTER = 32   
+                        else:
+                            spr_POINTER = 0
 
-                    if b'SOPC' in BIN_file[-16:] :
-                        spr_END = 16
-                    else:
-                        spr_END = 0
+                        if b'SOPC' in BIN_file[-16:] :
+                            spr_END = 16
+                        else:
+                            spr_END = 0
 
-                    if (len(BIN_file) - spr_POINTER - spr_END) % 32 == 0:
+                    lenght = len(BIN_file) - spr_POINTER - spr_END
+                    
+                    if lenght % 32 == 0:
 
                         n=len(BIN_name)-1
                         SHORT_name = ""
@@ -107,7 +115,7 @@ if len(PAL_path) != 0:
                             if 4 > tile_COUNT or tile_COUNT > 32 :
                                 tile_COUNT = 0
 
-                        BIN_len = len(BIN_file) + (len(BIN_file) % (tile_COUNT * 32))
+                        BIN_len = lenght + (lenght % (tile_COUNT * 32))
                         w = 8 * tile_COUNT
                         h = BIN_len // (tile_COUNT * 32) * 8
 
