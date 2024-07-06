@@ -24,14 +24,15 @@ Python Scripts that convert Picture into Bin file and vice-versa for GameBoy Adv
 3. **Two bin files will be created**, ready to replace data in the ROM or DS Files
 
 ## Hex-to-paint Script
-3. Choose a palette (bin file). **Its lenght has to be 32**. If you use a NCLR palette with multiple palettes, **choose the right one to edit**
-3. Choose a sprite sheet (bin file). **Its lenght has to be a divisble of 32 (one tile)**
-3. **Choose the number of tiles for the width**
-3. **Two images files will be created**, ready to be edited in drawing tools
+* Choose a palette (bin file). **Its lenght has to be 32**. If you use a NCLR palette with multiple palettes, **choose the right one for edit**
+* Choose a sprite sheet (bin file). **Its lenght has to be a divisble of 32 (one tile)**
+* OR Choose a .b file. **Choose the right palette for edit.**
+* **Choose the number of tiles for the width**
+* **Two images files will be created**, ready to be edited in drawing tools
 
 ## Update
 * **15 December of 2023**: Added compatibility to Nitro DS files (Hex-to-paint) and ability to create them (Paint-to-hex).
-* **5th July of 2024**: Add compability to .b files
+* **5th July of 2024**: Add compatibility to .b files
 
 ## Similar Tool
 + [Paint-Hex Convertor (Sega Genesis/Megadrive)](https://github.com/zigaudrey/paint-hex-convertor-MSX)
