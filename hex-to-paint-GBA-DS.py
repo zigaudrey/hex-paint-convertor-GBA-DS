@@ -5,7 +5,7 @@ from PIL import Image
 from tkinter import filedialog
 
 PAL_path = ""
-PAL_path = filedialog.askopenfilename(initialdir=os.getcwd(), title="Select Pal File", filetype=(('BIN file', '*.bin'),('NCLR file', '*.NCLR'),("ALL file",'*.*')))
+PAL_path = filedialog.askopenfilename(initialdir=os.getcwd(), title="Select Pal File or .b file", filetype=(('BIN file', '*.bin'),('.b (Palette + Image) file', '*.b'),('NCLR file', '*.NCLR'),("ALL file",'*.*')))
 
 if len(PAL_path) != 0:
     PAL_open = open(PAL_path, 'rb')
@@ -21,21 +21,27 @@ if len(PAL_path) != 0:
         SHORT_pal_name = PAL_path[n] + SHORT_pal_name
         n -= 1
 
-    if len(PAL_data) >= 32:
+    pal_START = 0
+    pal_END = 0
 
-        pal_END = 0
+    if PAL_path[-2:] == ".b":
+        pal_START = struct.unpack("<L", PAL_data[16:20])[0]
+
+    if len(PAL_data) - pal_START >= 32:
 
         if PAL_data[0:4] == b'RLCN':
             pal_START = 40
         elif PAL_data[0:4] == b'TTPL':
             pal_START = 24  
         else:
-            pal_START = 0
+            if PAL_path[-2:] != ".b":
+                pal_START = 0
 
         if b'PMCP' in PAL_data[-22:] :
             pal_END = 22
         else:
-            pal_END = 0
+            if PAL_path[-2:] != ".b":
+                pal_END = 0
 
         if (len(PAL_data) - pal_START - pal_END) % 32 == 0:
 
@@ -68,9 +74,13 @@ if len(PAL_path) != 0:
                 if PAL_List[0] in PAL_List[1:]:
                     print("The first color is doubled. Change to (0, 224, 224).")
                     PAL_List[0] = (0, 224, 224)
-                
+
                 BIN_name = ""
-                BIN_name = filedialog.askopenfilename(initialdir=os.getcwd(), title="Select Sprite Bin File", filetype=(('BIN file', '*.bin'),('B file (DS Sprite Sheet)', '*.b'),('NCGR file', '*.NCGR'),("ALL file",'*.*')))
+
+                if PAL_path[-2:] == ".b":
+                    BIN_name = PAL_path
+                else:
+                    BIN_name = filedialog.askopenfilename(initialdir=os.getcwd(), title="Select Sprite Bin File", filetype=(('BIN file', '*.bin'),('.b file (DS Sprite Sheet)', '*.b'),('NCGR file', '*.NCGR'),("ALL file",'*.*')))
 
                 if len(BIN_name) != 0:
 
